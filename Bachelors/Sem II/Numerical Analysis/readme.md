@@ -1,6 +1,6 @@
 <p><strong>Topic:</strong> Numerical Analysis</p>
 <p><strong>Language Used:</strong> C</p>
-<p>This folder contains all the code submitted for Final Evaluation during Semester Ii Numerical Analysis Lab</p>
+<p>This folder contains all the code submitted for Final Evaluation during Semester II Numerical Analysis Lab</p>
 <p>Code is well documented and can refer to the associated PDF for documentation</p>
 <p>List of all Problem Statements in <a href="Numerical Analysis/Assignment List.pdf">Assignment List.pdf</a><p>
 <p>Each assignment consists 2 files:</p>
