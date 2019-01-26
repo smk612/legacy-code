@@ -15,11 +15,11 @@
 </ol>
 <p><strong>Contents:</strong></p>
 <ul>
-  <li><p><a href="VHDL/or.pdf">OR</a> Implementation</p></li>
-  <li><p><a href="VHDL/and.pdf">AND</a> Implementation</p></li>
-  <li><p><a href="VHDL/xor.pdf">XOR</a> Implementation</p></li>
-  <li><p><a href="VHDL/nand.pdf">NAND</a> Implementation</p></li>
-  <li><p><a href="VHDL/halfadd.pdf">Half Adder</a> Implementation</p></li>
-  <li><p><a href="VHDL/halfsub.pdf">Half Subtracter</a> Implementation</p></li>
-  <li><p><a href="VHDL/fulladd.pdf">Full Adder</a> Implementation</p></li>
+  <li><p><a href="or.pdf">OR</a> Implementation</p></li>
+  <li><p><a href="and.pdf">AND</a> Implementation</p></li>
+  <li><p><a href="xor.pdf">XOR</a> Implementation</p></li>
+  <li><p><a href="nand.pdf">NAND</a> Implementation</p></li>
+  <li><p><a href="halfadd.pdf">Half Adder</a> Implementation</p></li>
+  <li><p><a href="halfsub.pdf">Half Subtracter</a> Implementation</p></li>
+  <li><p><a href="fulladd.pdf">Full Adder</a> Implementation</p></li>
 </ul>
