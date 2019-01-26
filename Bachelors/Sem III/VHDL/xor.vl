@@ -1,0 +1,5 @@
+module xorgate(A,B,C,G);
+input A,B,C;
+output G;
+assign G=A^B^C;
+endmodule

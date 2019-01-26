@@ -1,0 +1,6 @@
+module fulladder(A,B,C,Su,Ca);
+input A,B,C;
+output Su,Ca;
+assign Su=A^B^C;
+assign Ca=(A&B)||(B&C)||(C&A);
+endmodule

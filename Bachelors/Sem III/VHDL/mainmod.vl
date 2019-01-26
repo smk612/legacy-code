@@ -1,0 +1,22 @@
+module main;
+reg A,B,C;
+wire F,G,Sum,Carry,Su,Ca;
+nandgate add(A,B,C,F);
+xorgate aa(A,B,C,G);
+halfadder ab(A,B,Sum,Carry);
+halfsub ac(A,B,Diff,Borw);
+fulladder ad(A,B,C,Su,Ca);
+initial begin
+#1 A=0;B=0;C=0;
+#1 A=0;B=0;C=1;
+#1 A=0;B=1;C=0;
+#1 A=0;B=1;C=1;
+#1 A=1;B=0;C=0;
+#1 A=1;B=0;C=1;
+#1 A=1;B=1;C=0;
+#1 A=1;B=1;C=1;
+end
+initial begin
+$monitor("input=%d,A=%b,B=%b,C=%b,NAND=%b,XOR=%b,HALFADDER:Sum=%b,Carry=%b,HALFSUB:Diff=%b,Borrow=%b,FULLADDER:Sum=%b,Carry=%b\n",$time,A,B,C,F,G,Sum,Carry,Diff,Borw,Su,Ca);
+end
+endmodule
