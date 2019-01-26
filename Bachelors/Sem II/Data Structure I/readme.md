@@ -1,6 +1,6 @@
-<p><strong>Topic:</strong> Object Oriented Programming</p>
+<p><strong>Topic:</strong> Data Structures</p>
 <p><strong>Language Used:</strong> C</p>
-<p><a href="Data Structure I/Assignments">Assignments</a> Folder contains all the code submitted for Final Evaluation during Semester II OOP Lab</p>
+<p><a href="Data Structure I/Assignments">Assignments</a> Folder contains all the code submitted for Final Evaluation during Semester II DS Lab</p>
 <p>Code is well documented and can refer to the associated PDF for documentation</p>
 <p>List of all Problem Statements in <a href="Data Structure I/Assignments/Assignment List.pdf">Assignment List.pdf</a><p>
 <p>Each assignment consists 2 files:</p>
