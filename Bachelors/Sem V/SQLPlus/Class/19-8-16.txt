@@ -1,0 +1,66 @@
+---19/08/2016 (Fri)---
+
+insert into dept values ('D05','FINANCE','Chennai','');
+
+insert into emp values ('&eid','&ename',to_date('&doj','dd/mm/yyyy'),&sal,'&dno');
+Enter value for eid: E05
+Enter value for ename: Sukrit
+Enter value for doj: 15-09-2014
+Enter value for sal: 25000
+Enter value for dno:
+
+select * from emp,dept;
+--join kore dekhabe. 2to dno.
+
+select * from emp natural join dept;
+--natural join korbe, ekta dno.
+
+select ename,sal as Salary,dname as "Dept Name" from emp,dept where emp.dno=dept.dno and dname='ORACLE' and dloc='Kolkata';
+--query to display ename and sal of those who are ^^
+
+select ename,sal as Salary,dname as "Dept Name",dloc as "Dept Location" from (select ename, sal, dno from emp) R natural join (select dno,dname,dloc from dept where dname='ORACLE' and dloc='Kolkata');
+--optimised query. 1st set of brackets er name dilam R
+
+select R.ename,R.sal as Salary,S.dname as "Dept Name",S.dloc as "Dept Location" from (select ename, sal, dno from emp) R , (select dno,dname,dloc from dept where dname='ORACLE' and dloc='Kolkata') S where R.dno=S.dno;
+--rename korlam diye kaj korchi. agerta more optimised as ami etae equijoin krchi (presence of superfluous attribute)
+
+(select sal from emp) minus (select R.sal from (select sal from emp) R, (select sal from emp) S where R.sal<S.sal);
+--optimised query to find max salary
+--'>' kore dile min salary hoe jabe
+
+(select sal from emp) minus (select emp.sal from emp, emp e where emp.sal<e.sal)
+--not optimised. but eta hoche equijoin.
+--Both of the above are theta joins as uses only '<'
+
+select ename from emp order by ename asc;
+--on the basis of ascending order dekhache. 'desc' for descending. "order by ename asc" hoche ashol
+
+select dno,count(*) as "No of Emps" from emp group by dno;
+--count ta function. * hoche for all. dekhache how many employees in each dept
+--jokhon group by ba order by kori tale jegulo select e thakbe sheguloi o pabe for ordering. group by jeta ache sheta chara kichu debena.
+
+select dno,count(*) as "No of Emps", avg(sal) as "Avg Sal" from emp group by dno;
+--avg sal o dekhache
+
+--agey 'where' call hoe then 'group by'; ultota hoe na
+
+select dno,count(*) as "No of Emps" , avg(sal) as "Avg Sal" from emp group by dno having count(*)>2;
+--dujoner beshi employee ache shei dept gulo dekha
+--'group by' er pore jodi condition diteh hoe then 'having' use korte hobe.
+
+--shei dept er number bolo jekhane max no of employees ache.
+select dno,count(*) as "No of Emps" , avg(sal) as "Avg Sal" from emp group by dno having count(*)=(select max(count(*)) from emp group by dno);
+--last er 'group by' ta dichi karon otai return korchi
+
+select dname,count(*) as "No of Emps" from (select dno,dname from dept) natural join (select eid,dno from emp) group by dname having count(*)>2;
+--dname diye order korlam join kore.
+--as dname diye korchi, so ora add kore diche. dname er respect e count korche.
+
+--"EACH" mane group by use korte hobe -->keyword in question
+
+select rownum,eid,sal from emp;
+--'rownum' is a hidden attribute in every table. other one is 'rowid'
+
+--displays odd rows of the table 
+select r.rn as "Row Num",r.eid,r.sal from (select rownum as rn,eid,sal from emp) r where mod(r.rn,2)=1;
+--as 'rownum' is a hidden attribute, tai otar upor kichu restrictions ache. otake ekta normal attribute baniye kaj kora gelo.

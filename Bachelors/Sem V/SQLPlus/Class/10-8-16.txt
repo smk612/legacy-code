@@ -1,0 +1,47 @@
+---10/08/2016 (Wed)---
+
+select ename as "Name", sal as "Salary" from emp;
+--renames ename as Name and sal as Salary and displays on the screen
+
+select ename as "Name", sal as "Salary" from emp where ename like '_e%';
+--displays only those whose second letter is 'e'
+
+select ename as "Name", sal as "Salary" from emp where ename in (select trim('&name') from dual);
+--user friendly display, trims the spaces in the
+
+select ename as "Name", sal as "Salary" from emp where sal between 24000 and 27000;
+
+select ename as "Name", sal as "Salary" from emp where sal>=25000 and to_char(doj,'mm')=(select to_char(sysdate,'mm') from dual);
+--selects the person whose salary more than 25000 and joined in the current month
+
+select floor(sysdate-doj) from emp;
+--days from current date dekhabe
+
+select floor((sysdate-doj)/30) from emp;
+--months from current date
+
+select ename as "Name", sal as "Salary" from emp where floor((sysdate-doj)/30) >=6;
+--show sal of those who are above 6 months
+
+select ename as "Name", sal as "Salary" from emp where floor((sysdate-doj)/30) >=6 and dno=(select dno from dept where dloc='Mumbai' and dname='ORACLE');
+--display those who are working at these loc and dept and experience more than 6 months
+
+update emp set sal=case when floor(sysdate-doj)/365 >1 then (1.1*sal) else 1.05*sal end;
+--increase sal of those who are more than "1 year" by 10% and the others by 5%
+
+commit;
+
+select count(eid) as "No of Employees" from emp;
+--shows number of valid values excluding those which are NULL(try with dno,same table). If replace with * in place of eid, displays number of rows
+
+select count(distinct dno) from emp;
+--displays count of distinct values of dno
+
+select ename as name, sal as "Max Salary" from emp where sal=(select max(sal) from emp);
+--max is a function that returns the max value. it compares the whole table with that. 
+--as er por w/o double quotes na dile capital e dekhabe one word.
+--bhitorer query ta agey kaj korbe.
+
+select ename as "Name", sal as "Second Max Salary" from emp where sal=(select max(sal) from emp where sal<(select max(sal) from emp));
+--select second highest salary
+
