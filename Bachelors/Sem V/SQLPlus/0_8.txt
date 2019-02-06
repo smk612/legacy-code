@@ -1,0 +1,11 @@
+create table Employee(empno varchar2(4) constraint pkEmployee primary key constraint startE check(empno like 'E%'), empname varchar2(20), city varchar2(25));
+create table Project(pno varchar2(4) constraint pkProject primary key constraint startP check(pno like 'P%'), pname varchar2(20));
+create table Part(partno varchar2(4) constraint pkPart primary key constraint startPA check(partno like 'PA%'), part_name varchar2(20));
+create table Use(pno varchar2(4), partno varchar2(4), primary key(pno,partno), constraint fkUsepno2Projectpno foreign key(pno) references Project(pno) on delete set NULL, constraint fkUsepartno2Partpartno foreign key(pno) references Part(partno) on delete set NULL);
+create table Works(empno varchar(4), pno varchar(4), primary key(empno,pno), constraint fk Worksempno2Employeeempno foreign key(empno) references Employee(empno) on delete set NULL, constraint fkWorkspno2Projectpno foreign key(pno) references Project(pno));
+
+insert into Employee(empno,empname,city) values ('&empno','&empname','&city');
+insert into Project(pno,pname) values ('&pno','&pname');
+insert into Part(partno,part_name) values('&partno','&part_name');
+insert into Use(pno,partno) values ('&pno','&partno');
+insert into Works(empno,pno) values ('&empno','&pno');
