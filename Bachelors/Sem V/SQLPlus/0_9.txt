@@ -1,0 +1,11 @@
+create table Aircraft(aid varchar(4) constraint pkAircraft primary key constraint startA check(aid like 'A%'),type varchar(20));
+create table Flights(flno varchar2(4) constraint pkFlights primary key constraint startF check(dno like 'F%'),aid varchar(4), constraint fkFlightsaid2Aircraftaid foreign key(aid) references Aircraft(aid) on delete set NULL,company varchar2(20) constraint companyrange check(company in ('Jet','AI','Kingfisher','Spicejet')));
+create table Employees(eid varchar(4) constraint pkEmployees primary key constraint startE check(eid like'E%'), ename varchar(20), salary number);
+create table Certified(eid varchar(4),aid varchar(4),primary key(eid,aid), constraint fkCertifiedeid2Employeeseid foreign key(eid) references Employees(eid) on delete set NULL, constraint fkCertifiedaid2Aircraftaid foreign key(aid) references Aircraft(aid) on delete set NULL);
+create table Schedule(eid varchar(4), flno varchar(4), source_city varchar(20), destination_city varchar(20), dof date, constraint fkScheduleeid2Employeeseid foreign key(eid) references Employees(eid) on delete set NULL, constraint fkScheduleflno2Flightsflno foreign key(flno) references Flights(flno));
+
+insert into Aircraft(aid,type) values ('&aid','&type');
+insert into Flights(flno,aid,company) values('&flno','&aid','&company');
+insert into Employees(eid,ename,salary) values('&eid','&ename','&salary');
+insert into Certified(eid,aid) values('&eid','&aid');
+insert into Schedule(eid,flno,source_city,destination_city,dof) values ('&eid','&flno','&source_city','&destination_city',to_date('&dof','DD/MM/YYYY'));
