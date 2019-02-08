@@ -1,0 +1,8 @@
+create table Branch(branch_name varchar(20), branch_city varchar(20),assets number);
+create table Customer(customer_name varchar(20),street varchar(20),city varchar(20));
+create table Loan(branch_name varchar(20),loan_no varchar(6) constraint startL check(loan_no like'L%'),amount number constraint amountmax check(amount <= 1500000),constraint fkLoanbranch_name2Branchbranch_name foreign key(branch_name) references Branch(branch_name));
+create table Borrower(customer_name varchar(20), loan_no varchar(6), constraint fkBorrowercustomer_name2Customercustomer_name foreign key(customer_name) references Customer(customer_name), constraint fkBorrowerloan_no2Loanloan_no foreign key(loan_no) references Loan(loan_no));
+create table Account(branch_name varchar(20),account_no varchar(8) constraint startA check(account_no like 'A%'), balance number, constraint fkAccountbranch_name2Branchbranch_name foreign key(branch_name) references Branch(branch_name));
+create table Depositor(customer_name varchar(20),account_no varchar(8),constraint fkDepositorcustomer_name2Customercustomer_name foreign key(customer_name) references Customer(customer_name), constraint fkDepositoraccount_no2Accountaccount_no foreign key(account_no) references Account(account_no));
+
+insert into
