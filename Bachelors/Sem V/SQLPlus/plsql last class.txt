@@ -1,0 +1,384 @@
+SQL*Plus: Release 11.2.0.2.0 Production on Fri Nov 11 11:29:59 2016
+
+Copyright (c) 1982, 2011, Oracle.  All rights reserved.
+
+Enter user-name: system
+Enter password: 
+
+Connected to:
+Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
+
+SQL> set serveroutput on
+SQL> desc bastauts
+ERROR:
+ORA-04043: object bastauts does not exist
+
+
+SQL> desc bastatus
+ Name					   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ AID					   NOT NULL NUMBER(4)
+ STATUS 					    VARCHAR2(1)
+
+SQL> desc ba
+ Name					   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ AID					   NOT NULL NUMBER(4)
+ DOP						    DATE
+ DOL						    DATE
+ BALANCE					    NUMBER(8)
+
+SQL> select * from ba;
+
+       AID DOP	    DOL 	BALANCE
+---------- -------- -------- ----------
+      2651 01-01-14 01-01-14	   5000
+      2561 02-01-15 02-01-15	   6000
+	 1 05-11-15 05-11-15	   1200
+	 2 05-10-15 04-11-16	   1250
+
+SQL> select * from bastatus
+  2  ;
+
+no rows selected
+
+SQL> @bup.sql
+Enter value for ano: 2561
+old  11: ano:=&ano;
+new  11: ano:=2561;
+Enter value for amt: 500
+old  16: 	amt:=&amt;
+new  16: 	amt:=500;
+else
+*
+ERROR at line 23:
+ORA-06550: line 23, column 1:
+PLS-00103: Encountered the symbol "ELSE" when expecting one of the following:
+;
+The symbol ";" was substituted for "ELSE" to continue.
+
+
+SQL> @bup.sql
+Enter value for ano: 2561
+old  11: ano:=&ano;
+new  11: ano:=2561;
+Enter value for amt: 500
+old  16: 	amt:=&amt;
+new  16: 	amt:=500;
+2561is deactivated
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from bastatus;
+
+       AID S
+---------- -
+      2561 I
+
+SQL> select * from ba;
+
+       AID DOP	    DOL 	BALANCE
+---------- -------- -------- ----------
+      2651 01-01-14 01-01-14	   5000
+      2561 02-01-15 02-01-15	   6000
+	 1 05-11-15 05-11-15	   1200
+	 2 05-10-15 04-11-16	   1250
+
+SQL> @bup
+Enter value for ano: 2
+old  11: ano:=&ano;
+new  11: ano:=2;
+Enter value for amt: 100
+old  16: 	amt:=&amt;
+new  16: 	amt:=100;
+declare
+*
+ERROR at line 1:
+ORA-01403: no data found
+ORA-06512: at line 12
+
+
+SQL> desc ba;
+ Name					   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ AID					   NOT NULL NUMBER(4)
+ DOP						    DATE
+ DOL						    DATE
+ BALANCE					    NUMBER(8)
+
+SQL> @bup
+Enter value for balnce: 5000
+old  10: balnce:=&balnce;
+new  10: balnce:=5000;
+1 number of rows affected.
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from ba;
+
+       AID DOP	    DOL 	BALANCE
+---------- -------- -------- ----------
+      2651 01-01-14 01-01-14	   5500
+      2561 02-01-15 02-01-15	   6000
+	 1 05-11-15 05-11-15	   1200
+	 2 05-10-15 04-11-16	   1250
+
+SQL> @bup
+Enter value for bal: 5500
+old   8: bal:=&bal;
+new   8: bal:=5500;
+1 number of rows affected.
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from ba;
+
+       AID DOP	    DOL 	BALANCE
+---------- -------- -------- ----------
+      2651 01-01-14 01-01-14	   6000
+      2561 02-01-15 02-01-15	   6000
+	 1 05-11-15 05-11-15	   1200
+	 2 05-10-15 04-11-16	   1250
+
+SQL> @bup2
+nra number(4);--number of rows affected
+*
+ERROR at line 4:
+ORA-06550: line 3, column 76:
+PL/SQL: ORA-00933: SQL command not properly ended
+ORA-06550: line 3, column 13:
+PL/SQL: SQL Statement ignored
+
+
+SQL> @bup2
+The result of the query is:
+AID Balance
+2651 6000
+2561 6000
+
+PL/SQL procedure successfully completed.
+
+SQL> @bup2;
+declare
+*
+ERROR at line 1:
+ORA-01001: invalid cursor
+ORA-06512: at line 8
+
+
+SQL> /
+declare
+*
+ERROR at line 1:
+ORA-01001: invalid cursor
+ORA-06512: at line 8
+
+
+SQL> @bup2;
+The result of the query is:
+AID Balance
+-----------
+declare
+*
+ERROR at line 1:
+ORA-06511: PL/SQL: cursor already open
+ORA-06512: at line 3
+ORA-06512: at line 15
+
+
+SQL> @bup2;
+declare
+*
+ERROR at line 1:
+ORA-01001: invalid cursor
+ORA-06512: at line 8
+
+
+SQL> @bup2;
+if z%NOTFOUND then
+   *
+ERROR at line 9:
+ORA-06550: line 9, column 4:
+PLS-00324: cursor attribute may not be applied to non-cursor 'Z'
+ORA-06550: line 9, column 1:
+PL/SQL: Statement ignored
+
+
+SQL> bup2;
+SP2-0042: unknown command "bup2" - rest of line ignored.
+SQL> @bup2;
+	nr:=c%ROWCOUNT;
+	*
+ERROR at line 17:
+ORA-06550: line 17, column 2:
+PLS-00201: identifier 'NR' must be declared
+ORA-06550: line 17, column 2:
+PL/SQL: Statement ignored
+ORA-06550: line 18, column 23:
+PLS-00201: identifier 'NR' must be declared
+ORA-06550: line 18, column 2:
+PL/SQL: Statement ignored
+
+
+SQL> @bup2;
+declare
+*
+ERROR at line 1:
+ORA-01001: invalid cursor
+ORA-06512: at line 8
+
+
+SQL> @bup2;
+declare
+*
+ERROR at line 1:
+ORA-01001: invalid cursor
+ORA-06512: at line 4
+
+
+SQL> @bup3;
+The result of the query is:
+AID Balance
+-----------
+declare
+*
+ERROR at line 1:
+ORA-06511: PL/SQL: cursor already open
+ORA-06512: at line 3
+ORA-06512: at line 18
+
+
+SQL> @bup2;
+Enter value for balance: 6000
+old  11: 	for z in c(&balance) loop--for loop that runs in area of c
+new  11: 	for z in c(6000) loop--for loop that runs in area of c
+The result of the query is:
+AID Balance
+-----------
+2651 6000
+2561 6000
+
+PL/SQL procedure successfully completed.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> @bup3;
+elseif c%found then
+       *
+ERROR at line 11:
+ORA-06550: line 11, column 8:
+PLS-00103: Encountered the symbol "C" when expecting one of the following:
+:= . ( @ % ;
+ORA-06550: line 19, column 4:
+PLS-00103: Encountered the symbol ";" when expecting one of the following:
+if
+
+
+SQL> @bup3;
+elseif c%FOUND then
+       *
+ERROR at line 10:
+ORA-06550: line 10, column 8:
+PLS-00103: Encountered the symbol "C" when expecting one of the following:
+:= . ( @ % ;
+ORA-06550: line 18, column 4:
+PLS-00103: Encountered the symbol ";" when expecting one of the following:
+if
+
+
+SQL> @bup2;
+Enter value for balance: 6000
+old  18: --	for z in c(&balance) loop--for loop that runs in area of c
+new  18: --	for z in c(6000) loop--for loop that runs in area of c
+	loop
+	*
+ERROR at line 12:
+ORA-06550: line 12, column 2:
+PLS-00103: Encountered the symbol "LOOP" when expecting one of the following:
+. ( % ; for
+
+
+SQL> @bup2;
+Enter value for balance: 6000
+old  18: --	for z in c(&balance) loop--for loop that runs in area of c
+new  18: --	for z in c(6000) loop--for loop that runs in area of c
+	fetch c;
+	       *
+ERROR at line 13:
+ORA-06550: line 13, column 9:
+PLS-00103: Encountered the symbol ";" when expecting one of the following:
+. into bulk
+
+
+SQL> @bup2;
+Enter value for balance: 6000
+old  19: --	for z in c(&balance) loop--for loop that runs in area of c
+new  19: --	for z in c(6000) loop--for loop that runs in area of c
+	fetch c into ;
+	             *
+ERROR at line 14:
+ORA-06550: line 14, column 15:
+PLS-00103: Encountered the symbol ";" when expecting one of the following:
+mod <an identifier> <a double-quoted delimited-identifier>
+<a bind variable> continue current sql execute forall merge
+pipe purge
+
+
+SQL> @bup2;
+Enter value for balance: 6000
+old  19: --	for z in c(&balance) loop--for loop that runs in area of c
+new  19: --	for z in c(6000) loop--for loop that runs in area of c
+	open c;
+	*
+ERROR at line 12:
+ORA-06550: line 12, column 2:
+PLS-00306: wrong number or types of arguments in call to 'C'
+ORA-06550: line 12, column 2:
+PL/SQL: SQL Statement ignored
+
+
+SQL> @bup2;
+Enter value for balance: 6000
+old  19: --	for z in c(&balance) loop--for loop that runs in area of c
+new  19: --	for z in c(6000) loop--for loop that runs in area of c
+The result of the query is:
+AID Balance
+-----------
+declare
+*
+ERROR at line 1:
+ORA-01001: invalid cursor
+ORA-06512: at line 14
+
+
+SQL> @bup2;
+Enter value for balance: 6000
+old  12: 	open c(&balance);
+new  12: 	open c(6000);
+Enter value for balance: 6000
+old  19: --	for z in c(&balance) loop--for loop that runs in area of c
+new  19: --	for z in c(6000) loop--for loop that runs in area of c
+The result of the query is:
+AID Balance
+-----------
+2651 6000
+2561 6000
+
+PL/SQL procedure successfully completed.
+
+SQL> @bup2;
+Enter value for balance: 6000
+old  12: 	open c(&balance);
+new  12: 	open c(6000);
+The result of the query is:
+AID Balance
+-----------
+2651 6000
+2561 6000
+
+PL/SQL procedure successfully completed.
+
+SQL>   
+
