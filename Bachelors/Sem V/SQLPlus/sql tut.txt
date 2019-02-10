@@ -1,0 +1,109 @@
+create table emp(eid number(5),name varchar(30),sal number(10,2), primary key(eid));      
+
+	// 5 indicates max digits allowed else domain error, varchar(30) implies dynamic allocation of max size 30 if nothing given then it takes 2048 		max characters - char is static., number(10,2) imlies total number of digits is 10 including decimal and 2 is digits after decimal, makes eid 		the primary key and if the primary key is composite then the attributes are added in commas.
+
+describe emp;
+
+	// displays the table with fields and the datatypes
+
+drop table emp;
+
+	// deletes the tables...
+
+create table dept(dno varchar2(4) check(dno like 'D%'),dname varchar2(20) check(dname in ('HR','ORACLE','FINANCE')),dloc varchar2(25),dmgr varchar2(4));
+
+	// dno varchar2(4) check(dno like 'D%') - checks the format D01,D02 etc, eg: D%Ghosh, if we want to check specific positions like K in third 		place we put '_' eg, '__K%', check in dname means that we can add depts ony with the three depts we enter other dept name suppose CMSA it will 		be an error.
+	
+ alter table dept add primary key(dno);
+ 
+ desc dept
+ 
+ alter table dept drop column dmgr;
+ 
+ alter table dept add(dmgr varchar2(4));
+ 
+  alter table dept drop primary key(dno);
+ 
+ alter table dept add primary key(dno);
+ 
+ create table emp(eid varchar2(4) primary key check(eid like 'E%'),ename varchar2(30),doj date, sal number default(20000) check(sal between 15000 and 70000),dno varchar2(4),foreign key(dno) references dept(dno) on delete set NULL);
+ 
+ 	// on delete set NULL means upon deleting the dept the employees associated will have NULL placed on their dno n the emp table. if we set set 		cascade then the employees of the deleted dept will also be deleted.
+ 	
+ alter table dept add  constraint fk foreign key(dmgr) references emp(eid);
+ 
+	// constraint _NAME means that we are creating an alterable link to the foreign key so that we can later modify. If not given then we cannot 	 modify it further, if we have change it then we have to drop the entire table and create it once again. To modify it we have to refer it by 	its constraint name.
+ 	
+ alter table dept drop constraint fk;
+ 
+alter table dept add  constraint fk foreign key(dmgr) references emp(eid);
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+                                                               Next CLass
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+insert into dept(dno,dname,dloc,dmgr) values('D01','ORACLE','Mumbai',NULL);
+
+insert into dept(dno,dname,dloc,dmgr) values('&dno','&dname','&dloc',&dmgr);
+
+/
+
+commit;
+
+insert into emp(eid,ename,doj,dno) values('&eid','&ename',to_date('&doj','DD/MM/YYYY'),'&dno');
+
+delete from emp;
+
+roll back;
+
+delete from emp where eid='E01';
+
+select to_char(doj,'DD/MM/YYYY') as "Date of Joining" from emp where eid='E02';
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+                                                               Next CLass
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+select * from dept;
+
+update dept set dmgr='&dmgr' where dno='&dno';
+
+update emp set sal=sal+(sal*0.10) where dno='&dno';
+
+update emp set sal=case when dno='D01' then sal else sal+(sal*0.20) end;
+
+select 2 + 3 from dual;
+
+select power(2,11) from dual;
+
+select trim('ggg   ggg   ') from dual;
+
+select sysdate from dual;
+
+select to_char(sysdate,'DD/MM/YYYY') from dual;
+
+select to_char(sysdate,'Day') from dual;
+
+select to_char(sysdate,'Month') from dual;
+
+select to_char(sysdate,'Mon') from dual;
+
+select to_char(sysdate,'DDSP') from dual;
+
+select to_char(sysdate,'YYSP') from dual;
+ 
+select to_char(sysdate,'YYYYSP') from dual;
+
+select to_char(sysdate,'DDth Mon YYYY') from dual;
+
+select to_char(sysdate,'Ddth Month YYYY') from dual;
+
+select to_char(sysdate,'Ddth Mon Year') from dual;
+
+select to_char(sysdate,'Ddth Mon Year HH:MI:SS') from dual;
