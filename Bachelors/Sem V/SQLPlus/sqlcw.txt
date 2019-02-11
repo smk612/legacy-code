@@ -1,0 +1,16 @@
+create table dept(dno varchar2(4) constraint pkdept primary key constraint startD check(dno like 'D%'),dname varchar2(20) constraint dnamerange check(dname in ('HR','ORACLE','FINANCE')),dloc varchar2(25),dmgr varchar2(4));
+create table emp(eid varchar(4) constraint pkemp primary key constraint startE check(eid like 'E%'), ename varchar(30), doj date, sal number default(20000) constraint salrange check(sal between 15000 and 70000), dno varchar(4), constraint fkempdno2deptdno foreign key(dno) references dept(dno) on delete set NULL);
+alter table dept add constraint fkdmgr2eid foreign key(dmgr) references emp(eid);
+insert into dept(dno,dname,dloc,dmgr) values('&dno','&dname','&dloc',&dmgr);
+commit;
+
+insert into emp(eid,ename,doj,dno) values('&eid','&ename',to_date('&doj','DD/MM/YYYY'),'&dno');
+update dept set dmgr='&dmgr' where dno='&dno';
+insert into emp(eid,ename,doj,dno) values('E04','Imran',to_date('&doj','DD/MM/YYYY'),'D02');
+UPDATE EMP SET dno='D01' where ename='Neha';
+update dept set dmgr='E04' where dno='D02';
+
+//dropping
+alter table dept drop constraint fkdmgr2eid;
+drop table emp;
+drop table dept;
