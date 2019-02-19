@@ -1,0 +1,25 @@
+create table emp(eid number constraint pkemp primary key, name varchar(30), mid number, designation varchar(10), salary number, dname varchar(7));
+insert into emp(eid,name,mid,designation,salary,dname) values('&eid','&name','&mid','&designation','&salary','&dname');
+
+--Queries
+1> select name from emp where name like 'A%De';
+
+2> select * from emp where dname in ('HR','Sales','R and D');
+
+3> select name,designation,salary from emp where designation<>'Manager' and salary>30000;
+
+4> select * from emp where dname='HR' order by salary desc;
+
+5> select E.name, M.name as "Manager" from (select name,mid from emp) E, (select eid,name from emp where designation='Manager') M where E.mid=M.eid;
+
+6> select designation, avg(salary) from emp where designation<>'President' group by designation order by designation;
+
+7> select dname,name,salary from (select name,salary,dname from emp where designation='Manager') natural join (select dname,count(mid) from emp group by dname having count(mid)>2);
+
+8> select dname,max(salary),min(salary),count(*) from emp group by dname having count(*)>3 order by dname;
+
+9> select * from emp where salary>(select avg(salary) from emp);
+
+10> select name,salary from emp where salary=((select salary from emp) minus (select R.salary from (select salary from emp) R, (select salary from emp) S where R.salary>S.salary));
+
+11> select mid,count(mid) from emp group by mid having mid>0 order by mid desc;
