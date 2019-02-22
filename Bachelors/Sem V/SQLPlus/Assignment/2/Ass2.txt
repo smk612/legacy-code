@@ -1,0 +1,46 @@
+create table region1(id number constraint pkregion1 primary key, place varchar(15));
+create table dept1(dno number constraint pkdept1 primary key, name varchar(15), regionid number, constraint fkdept1regionid2region1id foreign key(regionid) references region1(id));
+create table emp1(eid number constraint pkemp1 primary key, name varchar(30), address varchar(35), dno number, salary number, constraint fkemp1dno2dept1dno foreign key(dno) references dept1(dno));
+
+insert into region1 values('&id','&place');
+SQL> insert into region1 values('&id','&place');
+Enter value for id: 01
+Enter value for place: Calcutta
+old   1: insert into region1 values('&id','&place')
+new   1: insert into region1 values('01','Calcutta')
+
+1 row created.
+
+insert into dept1 values('&dno','&name','&regionid');
+SQL> insert into dept1 values('&dno','&name','&regionid');
+Enter value for dno: 01
+Enter value for name: IT
+Enter value for regionid: 03
+old   1: insert into dept1 values('&dno','&name','&regionid')
+new   1: insert into dept1 values('01','IT','03')
+
+1 row created.
+
+insert into emp1 values('&eid','&name','&address','&dno','&salary');
+SQL> insert into emp1 values('&eid','&name','&address','&dno','&salary');
+Enter value for eid: 01
+Enter value for name: Ayan Sett
+Enter value for address: Serampore
+Enter value for dno: 01
+Enter value for salary: 18000
+old   1: insert into emp1 values('&eid','&name','&address','&dno','&salary')
+new   1: insert into emp1 values('01','Ayan Sett','Serampore','01','18000')
+
+1 row created.
+
+--Queries
+
+1> select * from emp1 where dno=(select dno from emp1 where name='Ayan Sett');
+
+2> select count(eid) as "Total Emps in Calcutta" from emp1 natural join(select dno from dept1,region1 where place='Calcutta' and regionid=id);
+
+3> select name from dept1 where dno=(select dno from emp1 group by dno having count(eid)=(select max(count(eid)) from emp1 group by dno));
+
+4> select count(eid) as "Employee Count" from emp1 group by dno having dno=(select dno from emp1 where name like 'Anish');
+
+5> select name,place from dept1,region1 where regionid=id and place ='Bangalore';
