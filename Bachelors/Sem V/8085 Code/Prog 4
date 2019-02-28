@@ -1,0 +1,15 @@
+//Add a series of numbers.
+//The number of numbers is given at the first location
+
+LDA 8100
+MOV H,A
+LXI B,8101
+MVI D,00
+LDAX B
+ADD D
+MOV D,A
+INX B
+DCR H
+JNZ 8009
+STAX B
+RST 0
