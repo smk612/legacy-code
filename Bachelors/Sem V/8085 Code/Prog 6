@@ -1,0 +1,15 @@
+//Show Square Root of a perfect square
+
+LDA C100
+MVI B,01
+MVI C,01
+SUB B
+//JZ C013
+INR C
+INR B
+INR B
+CPI 00
+JNZ C007
+MOV A,C
+STA C101
+RST 0
