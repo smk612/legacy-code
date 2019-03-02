@@ -1,0 +1,18 @@
+//Fibonacci series
+//Store The no of terms at location C100
+
+LDA C100
+MOV C,A
+LXI H,C101
+MVI M,00
+INX H
+MVI M,01
+MVI B,00
+MOV A,B
+MOV B,M
+ADD M
+INX H
+MOV M,A
+DCR C
+JNZ C00E
+RST 1
