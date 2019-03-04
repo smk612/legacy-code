@@ -1,0 +1,15 @@
+//MAX NUMBER
+//Store The no of terms at location C100
+
+LDA C100
+MOV C,A
+LXI H,C101
+Y: MOV A,M
+X: INX H
+DCR C
+JZ Z
+CMP M
+JC Y
+JNC X
+Z: MOV M,A
+RST 1
