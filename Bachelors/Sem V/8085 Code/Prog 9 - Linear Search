@@ -1,0 +1,16 @@
+//Linear Search
+//Store The no of terms at location C100
+//Store Search term at C101
+
+LDA C100
+MOV C,A
+LXI H,C101
+MOV A,M
+X: INX H
+DCR C
+JM Y
+CMP M
+JNZ X
+MVI A,01
+STA C0FF
+Y: RST 1
