@@ -1,0 +1,52 @@
+<html>
+<head>
+	<title>Basic Calculator</title>
+	<script type="text/javascript">
+		function ADD()
+		{
+			var x = parseInt(document.getElementById("txt1").value);
+			var y = parseInt(document.getElementById("txt2").value);
+			var res = x+y;
+			alert("The result is: "+res);
+		}
+		function SUB()
+		{
+			var x = parseInt(document.getElementById("txt1").value);
+			var y = parseInt(document.getElementById("txt2").value);
+			var res = x-y;
+			alert("The result is: "+res);
+		}
+		function MUL()
+		{
+			var x = parseInt(document.getElementById("txt1").value);
+			var y = parseInt(document.getElementById("txt2").value);
+			var res = x*y;
+			alert("The result is: "+res);
+		}
+		function DIV()
+		{
+			var x = parseInt(document.getElementById("txt1").value);
+			var y = parseInt(document.getElementById("txt2").value);
+			var res = x/y;
+			alert("The result is: "+res);
+		}
+	</script>
+</head>
+	
+<body>
+	<form>
+		<div align=center>
+			<h1>Basic Calculator</h1>
+			<br>
+			<b>Operand 1 :<input type="text" id = "txt1">
+			<br><br>
+			<b>Operand 2 :<input type="text" id = "txt2">
+			<br><br>
+			<input type="submit" onclick=ADD() value="Add">
+			<input type="submit" onclick=SUB() value="Sub">
+			<input type="submit" onclick=MUL() value="Mul">
+			<input type="submit" onclick=DIV() value="Div">
+		</div>
+	</form>
+</body>
+</html>
