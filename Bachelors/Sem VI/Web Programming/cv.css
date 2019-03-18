@@ -1,0 +1,25 @@
+body{
+background-color : lightblue;
+}
+#menu{
+background-color : orange;
+font-family:Arial;
+}
+table,td{
+background-color: lightyellow;
+border: 2px solid black;
+text-align: center;
+align : center
+}
+th {
+    text-align: center;
+}
+img{
+height : 100px;
+position: absolute	;
+right: 150px;
+top :30px;
+}
+#data{
+text-align : center;
+}
