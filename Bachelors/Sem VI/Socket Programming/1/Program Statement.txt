@@ -1,0 +1,2 @@
+Develop a Client Server Application using TCP/IP where the client will send temperature in degree Fahrenheit using commandline argument,
+the server will convert it to degree Centigrade and send the result back to the client. The Client will display the result.
