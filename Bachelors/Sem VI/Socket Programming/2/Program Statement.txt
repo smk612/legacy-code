@@ -1,0 +1,2 @@
+Develop a Client Server Application using TCP/IP where the client will send 2 operands and a operator to the server using commandline argument
+in "operand1 operator operand2" format and the server will calculate the result and display it. Allowed operators are '+,-,*,/'

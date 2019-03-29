@@ -1,0 +1,2 @@
+Develop a Client Server Application using UDP where the client will send a sentence to the server and the server will display 
+the number of vowels, consonants and white spaces in the sentence.

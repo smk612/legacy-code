@@ -1,0 +1,2 @@
+Develop a Client Server Application using TCP/IP where the client will input user's information like name, age, date of birth and 
+% of marks in 10+2 examination and send them to the server. The server will display the user's information.

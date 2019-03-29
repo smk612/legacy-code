@@ -1,0 +1,3 @@
+Develop a Client Server Application using TCP/IP where the client will send a filename to the server and the server will display 
+the content of the file. Otherwise display a message "File doesn't exist on the server."
+Note: The file is situated on the Server side.
