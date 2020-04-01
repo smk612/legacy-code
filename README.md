@@ -1,2 +1,2 @@
 # legacy-code
-All the code from my Bachelors and Masters.
+All the code from my Bachelors and Masters
